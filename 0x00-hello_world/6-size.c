@@ -1,17 +1,15 @@
 #include <stdio.h>
-
-/**
- * main -Entry point
- *
- * Return:Always 0 (success)
- */
 int main(void)
 {
-	printf("Size of a char: %ld byte(s)\n", sizeof(char));
-	printf("Size of an int: %ld bite(s)\n", sizeof(int));
-	printf("Size of a long int: %ld bite(s)\n", sizeof(long int));
-	printf("Size of a long long int: %ld bite(s)\n", sizeof(long long int));
-	printf("Size of a float: %ld bite(s)\n", sizeof(float));
-	fprintf(stderr, "%s", "[Anything]");
+	int integerType;
+	float floatType;
+	double doubleType;
+	char charType;
+
+/*Sizeof operator is used to evaluate the size of a variable*/
+	printf("Size of int: %ld bytes\n", sizeof(integerType));
+	printf("Size of float: %ld bytes\n", sizeof(floatType));
+	printf("Size of double: %ld bytes\n", sizeof(doubleType));
+	printf("Size of char: %ld byte\n", sizeof(charType));
 	return (0);
 }
