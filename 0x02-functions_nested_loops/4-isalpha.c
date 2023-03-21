@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _islower - check your abc
+ * _isalpha - check your abc
  *@a: is the character in question
  * Return: 1 if abc latter, else 0.
  */
