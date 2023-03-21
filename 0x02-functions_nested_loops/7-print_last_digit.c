@@ -5,7 +5,7 @@
  * @n: the number the last digit to be extracted from
  * Return: the last digit
  */
-int print_the_last_digit(int n)
+int print_last_digit(int n)
 {
 	int a;
 
