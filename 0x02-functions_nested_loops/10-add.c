@@ -6,11 +6,11 @@
  * @y: sec int
  * Return: x+y
  */
-int add(int a, int b)
+int add(int x, int y)
 {
-	int c;
+	int z;
 
-	c = a + b;
+	z = x + y;
 
-	return (c);
+	return (z);
 }
