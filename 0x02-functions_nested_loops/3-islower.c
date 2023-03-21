@@ -2,7 +2,7 @@
 
 /**
  * _islower - check your abc
- *
+ *@a: is the character in question
  * Return: 1 if abc lower, else 0.
  */
 int _islower(int a)
