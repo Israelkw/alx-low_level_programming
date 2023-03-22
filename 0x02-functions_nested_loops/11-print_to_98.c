@@ -1,11 +1,30 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_to_98 - all natural numbers to 98
  */
 void print_to_98(int n)
 {
-	for (n = 1; n <= 98; n++)
-		_putchar(n);
-}
+	int i, j;
 
+	if (n <= 98)
+	{
+		for (i = n; <= 98; i++)
+		{
+			if (i != 98)
+				printf("%d, ", i);
+			else if (i == 98)
+				printf("%d\n", i)
+		}
+	}els if (n >= 98)
+	{
+		for (j = n; j >= 98; j--)
+		{
+			if (j != 98)
+				printf("%d, ",j);
+			else if (j == 98)
+				printf("%d\n", j);
+		}
+	}
+}
