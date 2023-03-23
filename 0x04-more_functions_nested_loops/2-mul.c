@@ -5,7 +5,7 @@ include "main.h"
  * @a: first digit to be in the equestion
  * @b: second digit of the equestion
  *
- * Return: success (0)
+ * Return: multiplication result
  */
 int mul(int a, int b)
 {
