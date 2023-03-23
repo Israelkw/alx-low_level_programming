@@ -1,11 +1,12 @@
 #include "main.h"
+
 /**
  * print_triangle - triangle
  * @size: size of triangle
  */
 void print_triangle(int size)
 {
-	if (sie <= 0)
+	if (size <= 0)
 	{
 		_putchar('\n');
 	}
