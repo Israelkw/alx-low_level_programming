@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * main - flysounds
+ * main - flysounds in 1 to 100
  *
- * Return: 0
+ * Return: always 0 (Siccess)
  */
 int main(void)
 {
