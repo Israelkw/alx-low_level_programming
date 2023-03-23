@@ -1,5 +1,4 @@
-#include "main.h"
-#include <stdio>
+#include <stdio.h>
 
 /**
  * main - flysounds
