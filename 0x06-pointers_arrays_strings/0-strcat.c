@@ -4,6 +4,7 @@
  * _strcat - conatenates 2strings
  * @dest: string one
  * @src: string two
+ *
  * Return: void
  */
 char *_strcat(char *dest, char *src)
@@ -16,7 +17,7 @@ char *_strcat(char *dest, char *src)
 	{
 		i++;
 	}
-	J = 0;
+	j = 0;
 	while (src[j] != '\0')
 	{
 		dest[i] = src[j];
