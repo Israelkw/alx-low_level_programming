@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * *_strcat - conatenates 2 strings
+ * _strcat - conatenates 2strings
  * @dest: string one
  * @src: string two
  * Return: void
