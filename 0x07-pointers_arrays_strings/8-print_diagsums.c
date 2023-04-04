@@ -4,7 +4,7 @@
 /**
  * print_diagsums - name explans a lot
  * @a: pointer
- * @sise: intiger
+ * @size: intiger
  * Return: nothing
  */
 void print_diagsums(int *a, int size)
