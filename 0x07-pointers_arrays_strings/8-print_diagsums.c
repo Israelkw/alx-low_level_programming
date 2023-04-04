@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * print_diagums - name explans a lot
+ * print_diagsums - name explans a lot
  * @a: pointer
  * @sise: intiger
  * Return: nothing
