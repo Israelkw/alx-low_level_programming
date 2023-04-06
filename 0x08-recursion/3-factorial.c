@@ -1,0 +1,16 @@
+#include "main.h"
+
+/**
+ * factorial - ! of a number
+ * @n: intiger
+ * Return: factorial
+ */
+int factorial(int n)
+{
+	if (n == 0)
+	{
+		return (1);
+	}
+	return (n * factorial(n - 1));
+}
+
