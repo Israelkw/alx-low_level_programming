@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdio.h>
-#include <stilib.h>
+#include <stdlib.h>
 
 /**
  * str_concat - less tha 80 now
