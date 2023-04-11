@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * _strup - a function that returns a pointer to a newly allocated space in memory, which contains a copy of the string given as a parameter.
+ * _strup - a function that returns
  * @str: char
  * Return: 0 on succes
  */
