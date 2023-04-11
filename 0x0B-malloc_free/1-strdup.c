@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * _strup - a function that returns
+ * _strdup - a function that returns
  * @str: char
  * Return: 0 on succes
  */
