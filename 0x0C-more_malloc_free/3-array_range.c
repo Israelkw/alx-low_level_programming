@@ -21,5 +21,5 @@ int *array_range(int min, int max)
 	i = 0;
 	for (; min <= max; i++)
 		p[i] = min++;
-	return (P);
+	return (p);
 }
