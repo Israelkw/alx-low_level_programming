@@ -2,6 +2,12 @@
 #define DOG_H
 #include <stdio.h>
 
+/**
+ * struct dog - dog info
+ * @name: dog name
+ * @age: dog age
+ * @owner dog OWNER
+ */
 struct dog
 {
 	char *name;
