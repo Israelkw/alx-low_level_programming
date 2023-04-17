@@ -1,11 +1,11 @@
-#include <iostream>
+#include <stdio.h>
 
 /**
  * main - prints name of file
- * REturn 0 on success
+ * Return: 0 on success
  */
 int main(void)
 {
-	std::cout << __FILE__ << std::endl;
-	return 0;
+	printf("%s\n", __FILE__);
+	return (0);
 }
