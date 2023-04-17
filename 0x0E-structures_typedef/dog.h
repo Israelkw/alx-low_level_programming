@@ -13,6 +13,8 @@ struct dog
 	char *name;
 	float age;
 	char *owner;
-}
+};
+
+struct dog my_dog = {char *d, float age, char *owner};
 
 #endif
