@@ -3,7 +3,8 @@
 #include <string.h>
 #include "dog.h"
 
-/** free_dog - free
+/** 
+ * free_dog - free
  * @d: struct
  */
 
