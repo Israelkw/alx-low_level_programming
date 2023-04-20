@@ -4,7 +4,7 @@
 /**
  * main - Entry point
  * @argc: Number of arguments passed to the program
- * @argv: Array of pointers to strings containing the arguments passed to the program
+ * @argv: Array of pointers to strings containing the arguments passed
  *
  * Return: Always 0 (Success)
  */
@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 {
 	int num1, num2, result;
 	int (*op_func)(int, int);
+
 	if (argc != 4)
 	{
 		printf("Error\n");
