@@ -5,7 +5,7 @@
  * print_list - prints all the elements of a list_t list
  * @h: string - pointer
  *
- * Description: singly linked list node structure
+ * Return: count
  */
 size_t print_list(const list_t *h)
 {
