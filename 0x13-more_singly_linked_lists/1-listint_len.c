@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * print_listint - prints
+ * listint_len - returns the number of elements
  * @h: points
  * Return: count
  */
