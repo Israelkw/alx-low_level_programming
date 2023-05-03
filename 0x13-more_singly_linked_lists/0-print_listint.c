@@ -1,13 +1,12 @@
-#include "list.h"
-#include <stdio.h>
+#include "lists.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * print_listint - prints
  * @h: points
  * Return: count
  */
-
 size_t print_listint(const listint_t *h)
 {
 	size_t count = 0;
