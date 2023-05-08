@@ -1,47 +1,42 @@
 #include "main.h"
 
 /**
- * main - copies the content of a file to another file
- * @argc: number of arguments
- * @argv: array of arguments
- * Return: 0 on success, exit with code on failure
+ * cp - copies the content of one file to another file
+ * @file_from: the source file name
+ * @file_to: the destination file name
+ * Return: void
  */
-int main(int argc, char *argv[])
+void cp(char *file_from, char *file_to)
 {
-	FILE *file_from, *file_to;
-	char buffer[1024];
-	size_t n;
+	FILE *f1, *f2; /* file pointers */
+	int c; /* character buffer */
 
-	if (argc != 3)
+	f1 = fopen(file_from, "r"); /* open file_from for reading */
+	if (f1 == NULL) /* check if file_from exists and can be read */
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
-		exit(97);
+		perror("Error: Can't read from file"); /* print error message */
+		exit(98); /* exit with code 98 */
 	}
-	file_from = fopen(argv[1], "r");
-	if (file_from == NULL)
+	f2 = fopen(file_to, "w"); /* open file_to for writing */
+	if (f2 == NULL) /* check if file_to can be created or written */
 	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
+		perror("Error: Can't write to file"); /* print error message */
+		exit(99); /* exit with code 99 */
 	}
-	file_to = fopen(argv[2], "w");
-	if (file_to == NULL)
+	chmod(file_to, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	/* set permission to rw-rw-r-- */
+	while ((c = fgetc(f1)) != EOF) /* read file_from until end of file */
 	{
-		dprintf(2, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
+		fputc(c, f2); /* write character to file_to */
 	}
-	while ((n = fread(buffer, 1, 1024, file_from)) > 0)
+	if (fclose(f1) == EOF) /* close file_from and check for error */
 	{
-		fwrite(buffer, 1, n, file_to);
+		perror("Error: Can't close fd"); /* print error message */
+		exit(100); /* exit with code 100 */
 	}
-	if (fclose(file_from) != 0)
+	if (fclose(f2) == EOF) /* close file_to and check for error */
 	{
-	dprintf(2, "Error: Can't close fd %d\n", fileno(file_from));
-	exit(100);
+		perror("Error: Can't close fd"); /* print error message */
+		exit(100); /* exit with code 100 */
 	}
-	if (fclose(file_to) != 0)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", fileno(file_to));
-		exit(100);
-	}
-	return (0);
 }
