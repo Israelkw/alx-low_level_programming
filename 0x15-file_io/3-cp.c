@@ -3,14 +3,16 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 #define BUFFER_SIZE 1024
 
 /**
- * cp - copy
- * @file_from: explanatory
- * @file_to: self explanatory
- * Return: someting
+ * cp - copy a file from one location to another
+ * @file_from: source file
+ * @file_to: destination file
+ *
+ * Return: 0 on success, -1 on failure
  */
 void cp(char *file_from, char *file_to)
 {
@@ -24,7 +26,8 @@ void cp(char *file_from, char *file_to)
 		fprintf(stderr, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR
+			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (fd_to == -1)
 	{
 		fprintf(stderr, "Error: Can't write to %s\n", file_to);
@@ -56,10 +59,13 @@ void cp(char *file_from, char *file_to)
 }
 
 /**
- * main - do all
- * @argc: ark
- * @argv: arg
- * Return: why
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
+ *
+ * Return: 0 on success, 97 on invalid argument count,
+ *         98 on read error, 99 on write error,
+ *         100 on close error.
  */
 int main(int argc, char *argv[])
 {
