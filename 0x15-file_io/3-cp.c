@@ -1,42 +1,73 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
+
+#define BUFFER_SIZE 1024
 
 /**
- * cp - copies the content of one file to another file
- * @file_from: the source file name
- * @file_to: the destination file name
- * Return: void
+ * cp - copy
+ * @file_from: explanatory
+ * @file_to: self explanatory
+ * Return: someting
  */
 void cp(char *file_from, char *file_to)
 {
-	FILE *f1, *f2; /* file pointers */
-	int c; /* character buffer */
+	int fd_from, fd_to;
+	ssize_t nread;
+	char buf[BUFFER_SIZE];
 
-	f1 = fopen(file_from, "r"); /* open file_from for reading */
-	if (f1 == NULL) /* check if file_from exists and can be read */
+	fd_from = open(file_from, O_RDONLY);
+	if (fd_from == -1)
 	{
-		perror("Error: Can't read from file"); /* print error message */
-		exit(98); /* exit with code 98 */
+		fprintf(stderr, "Error: Can't read from file %s\n", file_from);
+		exit(98);
 	}
-	f2 = fopen(file_to, "w"); /* open file_to for writing */
-	if (f2 == NULL) /* check if file_to can be created or written */
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (fd_to == -1)
 	{
-		perror("Error: Can't write to file"); /* print error message */
-		exit(99); /* exit with code 99 */
+		fprintf(stderr, "Error: Can't write to %s\n", file_to);
+		exit(99);
 	}
-	chmod(file_to, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	/* set permission to rw-rw-r-- */
-	while ((c = fgetc(f1)) != EOF) /* read file_from until end of file */
+	while ((nread = read(fd_from, buf, BUFFER_SIZE)) > 0)
 	{
-		fputc(c, f2); /* write character to file_to */
+		if (write(fd_to, buf, nread) != nread)
+		{
+			fprintf(stderr, "Error: Write error on file %s\n", file_to);
+			exit(99);
+		}
 	}
-	if (fclose(f1) == EOF) /* close file_from and check for error */
+	if (nread == -1)
 	{
-		perror("Error: Can't close fd"); /* print error message */
-		exit(100); /* exit with code 100 */
+		fprintf(stderr, "Error: Read error on file %s\n", file_from);
+		exit(98);
 	}
-	if (fclose(f2) == EOF) /* close file_to and check for error */
+	if (close(fd_from) == -1)
 	{
-		perror("Error: Can't close fd"); /* print error message */
-		exit(100); /* exit with code 100 */
+		fprintf(stderr, "Error: Can't close fd %d\n", fd_from);
+		exit(100);
 	}
+	if (close(fd_to) == -1)
+	{
+		fprintf(stderr, "Error: Can't close fd %d\n", fd_to);
+		exit(100);
+	}
+}
+
+/**
+ * main - do all
+ * @argc: ark
+ * @argv: arg
+ * Return: why
+ */
+int main(int argc, char *argv[])
+{
+	if (argc != 3)
+	{
+		fprintf(stderr, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
+	cp(argv[1], argv[2]);
+	return (0);
 }
