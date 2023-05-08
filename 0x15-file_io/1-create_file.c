@@ -1,9 +1,7 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * create_file - Creates a file and writes text into it
+ * create_file - Creates a file
  * @filename: The name of the file to create
  * @text_content: The NULL terminated string to write to the file
  *
@@ -11,40 +9,23 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	FILE *file; /* file pointer */
-	int nwrite; /* number of bytes written */
+	int fd;
+	ssize_t w;
+	size_t len;
 
-	/* check if filename is NULL */
 	if (filename == NULL)
 		return (-1);
-	/* open the file in write mode */
-	file = fopen(filename, "w");
-
-	/* check if the file can not be created or written */
-	if (file == NULL)
+	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (fd == -1)
 		return (-1);
-
-	/* set the file permissions to rw------- */
-	chmod(filename, 0600);
-
-	/* check if text_content is NULL */
 	if (text_content == NULL)
-	{
-		/* create an empty file */
-		fclose(file);
 		return (1);
-	}
-
-	/* write text_content to the file */
-	nwrite = fprintf(file, "%s", text_content);
-
-	/* close the file */
-	fclose(file);
-
-	/* check if write failed or did not write expected amount of bytes */
-	if (nwrite < 0 || nwrite != strlen(text_content))
+	for (len = 0; text_content[len] != '\0'; len++)
+		;
+	w = write(fd, text_content, len);
+	if (w == -1)
 		return (-1);
+	close(fd);
 
-	/* return 1 on success */
 	return (1);
 }
